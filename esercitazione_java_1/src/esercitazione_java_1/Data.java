@@ -1,4 +1,5 @@
 package esercitazione_java_1;
+import java.util.*;
 
 class Data {
 		private Object data [][];
@@ -171,6 +172,55 @@ class Data {
 			
 			
 			
+			
+		}
+		
+		Tuple getItemSet(int index) {
+			Tuple tuple= new Tuple(getNumberOfAttributes());
+			for(int i=0;i<getNumberOfAttributes();i++) {
+				tuple.add(new DiscreteItem(getAttribute(i),(String) data[index][i]), i);
+			}
+			return tuple;
+			
+		}
+		
+		int[] sampling(int k){
+			int centroidIndexes[]= new int[k];
+			Random rand= new Random();
+			rand.setSeed(System.currentTimeMillis());//inizialliza generatore di numeri randomici
+			for(int i=0; i<k ; i++) {
+				boolean found=false;
+				int c;
+				do {
+					found=false;
+					c=rand.nextInt(getNumberOfExamples());// da un valore random a c preso da number of ex...
+					for(int j=0; j<i ; j++) {
+						if(compare(centroidIndexes[j],c)) { // controlla che c non sia presente in centroid
+							found=true;                     //se è presente si esce dal for
+							break;
+						}
+					}
+				}while(found);
+				centroidIndexes[i]=c;               //c viene asegnato a centroidindexes
+			}
+			
+			return centroidIndexes;
+		}
+		
+		private boolean compare(int i , int j) {
+			if(i==j) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+		
+		Object computePrototype(ArraySet idList , Attribute attribute) {
+			return computePrototype(idList,(DiscreteAttribute)attribute);
+			
+		}
+		
+		String computePrototype(ArraySet idList, DiscreteAttribute attribute) {
 			
 		}
 
