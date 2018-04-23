@@ -20,12 +20,20 @@ public class Tuple {
 		tuple[i]=c;
 	}
 	
-	double getDistance(tuple obj) {
+//	double getDistance(tuple obj) {
+		//return 
 		
-	}
+	//}
 	
-	double avgDistance(Data data , int clusteredData) {
-		
+	double avgDistance(Data data, int clusteredData[]){
+			double p=0.0,sumD=0.0;
+			for(int i=0;i<clusteredData.length;i++){
+			double d= getDistance(data.getItemSet(clusteredData[i]));
+			sumD+=d;
+			}
+			p=sumD/clusteredData.length;
+			return p;
 	}
-
 }
+
+

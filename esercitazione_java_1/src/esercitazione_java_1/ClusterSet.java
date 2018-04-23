@@ -45,4 +45,13 @@ public class ClusterSet {
 		
 	}
 
+	public String toString() {
+		
+	String a = new String();
+	a += data.sampling(C.length);
+	
+	return a;
+	}
 }
+
+

@@ -9,10 +9,7 @@ public abstract class Item {
 		this.value=value;
 	}
 	
-	void update(Data data , ArraySet clusteredData) {
-		
-	}
-	
+
 	Attribute getAttribute() {
 		return attribute;
 	}
@@ -24,9 +21,17 @@ public abstract class Item {
 	public String toString() {
 		return String.valueOf(value);
 	}
-	
+	/*
 	abstract double distance(Object a) {
 		
+		
 	}
-
+	*/
+	
+	void update(Data data , ArraySet clusteredData) {
+		
+		value=data.computePrototype(clusteredData, attribute);
+		
+	}
+	
 }

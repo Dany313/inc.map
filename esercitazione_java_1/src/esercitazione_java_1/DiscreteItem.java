@@ -2,13 +2,13 @@ package esercitazione_java_1;
 
 public class DiscreteItem extends Item {
 	
-	DiscreteItem(DiscreteAttribute attribute , String value){
-		super(attribute,value);
-		//value=String.valueOf(this.value);
+	DiscreteItem(Attribute attributeSet , String value){
+		super(attributeSet,value);
+	
 		
 	}
 	
-	double distance(Object a) {
+	public double distance(Object a) {
 		if(getValue().equals(a)) {
 			return 0;
 		}else {

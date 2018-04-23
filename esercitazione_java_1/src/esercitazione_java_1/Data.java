@@ -135,17 +135,17 @@ class Data {
 			
 		}
 		
-		private int getNumberOfExamples(){
+		public int getNumberOfExamples(){
 			return numberOfExamples;
 		}
 		
-		private int getNumberOfAttributes(){
+		public int getNumberOfAttributes(){
 			return attributeSet.length;
 		}
 		
 		
 		
-		private Object getAttributeValue(int exampleIndex, int attributeIndex){
+		public Object getAttributeValue(int exampleIndex, int attributeIndex){
 			return data[exampleIndex][attributeIndex];
 		}
 		
@@ -175,13 +175,15 @@ class Data {
 			
 		}
 		
-		Tuple getItemSet(int index) {
-			Tuple tuple= new Tuple(getNumberOfAttributes());
-			for(int i=0;i<getNumberOfAttributes();i++) {
-				tuple.add(new DiscreteItem(getAttribute(i),(String) data[index][i]), i);
-			}
-			return tuple;
+	
 			
+		Tuple getItemSet(int index){
+			Tuple tuple=new Tuple(attributeSet.length);
+			
+			for(int i=0;i<attributeSet.length;i++)
+				tuple.add(new DiscreteItem(attributeSet[i], (String)data[index][i]),i);
+			
+			return tuple;
 		}
 		
 		int[] sampling(int k){
@@ -208,7 +210,15 @@ class Data {
 		}
 		
 		private boolean compare(int i , int j) {
-			if(i==j) {
+			String string1 = new String();
+			String string2 = new String();
+			
+			for(int x=0;x<getNumberOfAttributes();x++) {
+				string1 += getAttributeValue(i,x);
+				string2 += getAttributeValue(j,x);
+			}
+			
+			if(string1.equals(string2)) {
 				return true;
 			}else {
 				return false;
@@ -221,7 +231,16 @@ class Data {
 		}
 		
 		String computePrototype(ArraySet idList, DiscreteAttribute attribute) {
+			String value = new String();
+			int max = 0;
+			int f =0;
+			int i = attribute.getNumberOfDistinctValues();
+			for(int j = 0;j<i;j++) {
+			  f =	attribute.frequency(data,idList,attribute.getValue(j));
+			}
 			
+			
+			return value;
 		}
 
 
