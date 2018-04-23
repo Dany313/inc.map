@@ -231,12 +231,16 @@ class Data {
 		}
 		
 		String computePrototype(ArraySet idList, DiscreteAttribute attribute) {
+			Data data = new Data();
 			String value = new String();
 			int max = 0;
 			int f =0;
 			int i = attribute.getNumberOfDistinctValues();
 			for(int j = 0;j<i;j++) {
 			  f =	attribute.frequency(data,idList,attribute.getValue(j));
+			  if(f>max) {
+				  value=attribute.getValue(j);
+			  }
 			}
 			
 			
