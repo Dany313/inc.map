@@ -7,7 +7,7 @@ class Data {
 		private Attribute attributeSet[];
 		
 		
-		private Data(){
+		public Data(){
 			
 			
 			 data = new Object[14][5];

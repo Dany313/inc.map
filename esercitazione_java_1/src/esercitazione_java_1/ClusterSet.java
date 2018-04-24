@@ -18,7 +18,7 @@ public class ClusterSet {
 		return C[i];
 	}
 	
-	void inizializeCentroids(Data data) {
+	void initializeCentroids(Data data) {
 		int centroidIndexes[] = data.sampling(C.length);  //prende array di centroidi da data
 		for(int i=0; i<centroidIndexes.length;i++) {      
 			Tuple centroidI = data.getItemSet(centroidIndexes[i]); //per ogni centroide viene creata una tupla
@@ -28,7 +28,23 @@ public class ClusterSet {
 	}
 	
 	Cluster nearestCluster(Tuple tuple) {
-		// fare getDistance in tuple
+		double x=0;
+		Tuple t = new Tuple(tuple.getLength());
+		int i=0;
+		double min=tuple.getDistance(tuple)-t.getDistance(C[i].getCentroid());
+		
+		Cluster m = new Cluster(tuple);
+		
+		for(i=1;i<tuple.getLength();i++) {
+			x=tuple.getDistance(tuple)-t.getDistance(C[i].getCentroid());
+			if(x<=min) {
+				min=x;
+				m=get(i);
+			}
+		}
+		
+		return m;
+		
 		
 	}
 	
@@ -42,15 +58,33 @@ public class ClusterSet {
 	}
 	
 	void updateCentroids(Data data) {
+		for(int i=0;i<C.length;i++) {
+			C[i].computeCentroid(data);
+		}
+		
 		
 	}
 
 	public String toString() {
 		
 	String a = new String();
-	a += data.sampling(C.length);
+	for(int i=0;i<C.length;i++) {
+		a +=C[i].getCentroid();
+	}
 	
 	return a;
+	}
+	//restituisce una stringa che descrive lo stato di ciascun cluster
+	public String toString(Data data) {
+		String str="";
+		for(int i=0;i<C.length;i++){
+		if (C[i]!=null){
+		str+=i+":"+C[i].toString(data)+"\n";
+		}
+		}
+		return str;
+
+		
 	}
 }
 

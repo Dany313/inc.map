@@ -21,12 +21,11 @@ public abstract class Item {
 	public String toString() {
 		return String.valueOf(value);
 	}
-	/*
-	abstract double distance(Object a) {
+	
+	abstract double distance(Object a);
 		
 		
-	}
-	*/
+	
 	
 	void update(Data data , ArraySet clusteredData) {
 		
