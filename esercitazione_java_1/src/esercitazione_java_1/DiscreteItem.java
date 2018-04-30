@@ -1,19 +1,26 @@
 package esercitazione_java_1;
 
+
 public class DiscreteItem extends Item {
 	
-	DiscreteItem(Attribute attributeSet , String value){
-		super(attributeSet,value);
-	
-		
+	DiscreteItem(DiscreteAttribute attribute,String value){
+		super(attribute,value);
 	}
 	
-	public double distance(Object a) {
-		if(getValue().equals(a)) {
+	
+	
+	
+	double distance(Object a) {
+		if(this.getValue().equals(a)) {
 			return 0;
 		}else {
 			return 1;
 		}
+	
 	}
+
+	
+	
+	
 
 }

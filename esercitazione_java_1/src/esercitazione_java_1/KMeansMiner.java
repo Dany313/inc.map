@@ -1,20 +1,21 @@
 package esercitazione_java_1;
 
+
 public class KMeansMiner {
 	
 	ClusterSet C;
 	
 	KMeansMiner(int k){
-		  C= new ClusterSet(k);
+		  this.C= new ClusterSet(k);
 	}
 	
 	ClusterSet getC() {
-		return C;
+		return this.C;
 	}
 	
 	int kmeans(Data data){
 		int numberOfIterations=0;
-		//STEP 1// scelta casuale centroide per ogni cluster
+//STEP 1// scelta casuale centroide per ogni cluster
 		C.initializeCentroids(data);
 		boolean changedCluster=false;
 		do{
@@ -41,7 +42,6 @@ public class KMeansMiner {
 		//Ripete i passi 2 e 3. finché due iterazioni consecuitive non restituiscono  centroidi uguali .
 
 		}
-	
 
 
 }

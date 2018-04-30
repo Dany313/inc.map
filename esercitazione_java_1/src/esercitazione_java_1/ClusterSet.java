@@ -1,57 +1,70 @@
 package esercitazione_java_1;
 
+
+
 public class ClusterSet {
-	
 	Cluster C[];
-	int i= 0;
+	int i = 0; //posizione valida per la memorizzazione di un nuovo cluster in CMetodi
 	
 	ClusterSet(int k){
-		C= new Cluster[k];
+		this.C = new Cluster[k];
 	}
-	
+	//possibile eccezione se i >k
 	void add(Cluster c) {
-		C[i]=c;
-		i++;
-	}
-	
-	Cluster get(int i) {
-		return C[i];
-	}
-	
-	void initializeCentroids(Data data) {
-		int centroidIndexes[] = data.sampling(C.length);  //prende array di centroidi da data
-		for(int i=0; i<centroidIndexes.length;i++) {      
-			Tuple centroidI = data.getItemSet(centroidIndexes[i]); //per ogni centroide viene creata una tupla
-			add(new Cluster(centroidI));     //la tupla viene assegnata ad un cluster che a sua volta è memorizzato ne clusterset (C)
-		}
+		this.C[i]=c;
+		this.i++;
 		
+	}
+	
+	Cluster get(int i){
+		return this.C[i];
+	}
+	
+	void initializeCentroids(Data data){
+		int centroidIndexes[]=data.sampling(C.length);
+		for(int i=0;i<centroidIndexes.length;i++){
+			Tuple centroidI=data.getItemSet(centroidIndexes[i]);
+			add(new Cluster(centroidI));
+		}
 	}
 	
 	Cluster nearestCluster(Tuple tuple) {
-		double x=0;
-		Tuple t = new Tuple(tuple.getLength());
-		int i=0;
-		double min=tuple.getDistance(tuple)-t.getDistance(C[i].getCentroid());
+		/*double x=0.0;
+		int j=0;
+		double min=get(j).getCentroid().getDistance(tuple);
 		
-		Cluster m = new Cluster(tuple);
+		Cluster nearestCluster = get(j);
+		j++;
+		while(j<i) {
+			if(get(j).getCentroid().getDistance(tuple)<=min) {
+				min = get(j).getCentroid().getDistance(tuple);
+				nearestCluster = get(j);
+			}
+			j++;
+		}
+		return nearestCluster;
+		*/
 		
-		for(i=1;i<tuple.getLength();i++) {
-			x=tuple.getDistance(tuple)-t.getDistance(C[i].getCentroid());
-			if(x<=min) {
-				min=x;
-				m=get(i);
+		double dist = 0.0;
+		double min_dist = tuple.getDistance(C[0].getCentroid());
+		int pos_min = 0;
+		for(int i =1; i<C.length;i++) {
+			dist = tuple.getDistance(C[i].getCentroid());
+			if (dist<min_dist) {
+				min_dist = dist;
+				pos_min = i;
 			}
 		}
 		
-		return m;
-		
-		
+
+		return C[pos_min];
+				
 	}
 	
 	Cluster currentCluster(int id) {
-		for(int i=0;i<C.length;i++) {
-			if(C[i].contain(id)) {
-				return C[i];
+		for(int j=0;j<this.C.length;j++) {
+			if(C[j].contain(id)==true) {
+				return this.get(j);
 			}
 		}
 		return null;
@@ -73,6 +86,7 @@ public class ClusterSet {
 	}
 	
 	return a;
+	
 	}
 	//restituisce una stringa che descrive lo stato di ciascun cluster
 	public String toString(Data data) {
@@ -83,9 +97,7 @@ public class ClusterSet {
 		}
 		}
 		return str;
+		}
 
-		
-	}
+
 }
-
-

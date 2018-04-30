@@ -19,7 +19,7 @@ public class Cluster {
 		return centroid;
 	}
 	
-	 void computeCentroid(Data data){
+	void computeCentroid(Data data){
 		for(int i=0;i<centroid.getLength();i++){
 			centroid.get(i).update(data,clusteredData);
 			
