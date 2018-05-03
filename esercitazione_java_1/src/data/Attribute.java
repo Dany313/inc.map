@@ -1,4 +1,4 @@
-package esercitazione_java_1;
+package data;
 
 public abstract class Attribute {
 	

@@ -1,4 +1,6 @@
-package esercitazione_java_1;
+package data;
+
+import utility.ArraySet;
 
 public abstract class Item {
 	
@@ -30,7 +32,7 @@ public abstract class Item {
 	 abstract double distance(Object a);
 	 
 	 //modifica il membro value,assegnandogli il valore reatituito da data.computePrototype(), fare in seguito
-	 void update(Data data,ArraySet clusteredData){
+	 public void update(Data data,ArraySet clusteredData){
 		 this.value=data.computePrototype(clusteredData, attribute);
 	 }
 	 

@@ -1,4 +1,4 @@
-package esercitazione_java_1;
+package data;
 
 public class Tuple {
 	Item[] tuple;
@@ -7,11 +7,11 @@ public class Tuple {
 		 this.tuple= new Item[size];
 	}
 	
-	int getLength() {
+	public int getLength() {
 		return this.tuple.length;
 	}
 	
-	Item get(int i) {
+	public Item get(int i) {
 		
 		return this.tuple[i];
 	}
@@ -21,7 +21,7 @@ public class Tuple {
 		
 	}
 	
-	double getDistance(Tuple obj) {
+	public double getDistance(Tuple obj) {
 		double x=0;
 		for(int i = 0;i<obj.getLength();i++) {
 			x+= this.get(i).distance(obj.get(i).getValue());
@@ -29,7 +29,7 @@ public class Tuple {
 		return x;
 	}
 	
-	double avgDistance(Data data, int clusteredData[]){
+	public double avgDistance(Data data, int clusteredData[]){
 		double p=0.0,sumD=0.0;
 		for(int i=0;i<clusteredData.length;i++){
 		double d= getDistance(data.getItemSet(clusteredData[i]));

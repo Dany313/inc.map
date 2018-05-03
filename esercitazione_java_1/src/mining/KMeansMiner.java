@@ -1,19 +1,21 @@
-package esercitazione_java_1;
+package mining;
 
+import data.Data;
+import mining.ClusterSet;
 
 public class KMeansMiner {
 	
 	ClusterSet C;
 	
-	KMeansMiner(int k){
+	public KMeansMiner(int k){
 		  this.C= new ClusterSet(k);
 	}
 	
-	ClusterSet getC() {
+	public ClusterSet getC() {
 		return this.C;
 	}
 	
-	int kmeans(Data data){
+	public int kmeans(Data data){
 		int numberOfIterations=0;
 //STEP 1// scelta casuale centroide per ogni cluster
 		C.initializeCentroids(data);

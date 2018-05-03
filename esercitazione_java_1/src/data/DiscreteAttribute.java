@@ -1,5 +1,6 @@
-package esercitazione_java_1;
+package data;
 
+import utility.ArraySet;
 
 public class DiscreteAttribute extends Attribute {
 	
@@ -25,7 +26,7 @@ String getValue(int i) {
 
 //metodi es2
 
-int frequency(Data data,ArraySet idList,String v) {
+ public int frequency(Data data,ArraySet idList,String v) {
 	
 	/*int frequency = 0;
 	

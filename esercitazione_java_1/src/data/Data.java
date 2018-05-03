@@ -1,17 +1,21 @@
-package esercitazione_java_1;
+package data;
 
 import java.util.Random;
 
+import utility.ArraySet;
 
 
-class Data {
+
+public class Data {
 	// Le visibilità di classi , attributi e metodi devono essere decise dagli studenti	
 		private Object data[][];
 		private int numberOfExamples;
 		private Attribute attributeSet[];
+		private int distinctTuples;
+
 		
 		
-		Data(){
+		public Data(){
 			attributeSet = new Attribute[5];
 
 			
@@ -23,24 +27,24 @@ class Data {
 			attributeSet[0] = new DiscreteAttribute("Outlook",0, outLookValues);
 			
 			String TemperatureValues[]=new String[3];
-			TemperatureValues[0]="Hot";
-			TemperatureValues[1]="Mild";
-			TemperatureValues[2]="Cool";
+			TemperatureValues[0]="hot";
+			TemperatureValues[1]="mild";
+			TemperatureValues[2]="cool";
 			attributeSet[1] = new DiscreteAttribute("Temperature",1, TemperatureValues);
 			
 			String HumidityValues[]=new String[2];
-			HumidityValues[0]="High";
-			HumidityValues[1]="Normal";
+			HumidityValues[0]="high";
+			HumidityValues[1]="normal";
 			attributeSet[2] = new DiscreteAttribute("Humidity",2, HumidityValues);
 			
 			String WindValues[]=new String[2];
-			WindValues[0]="Weak";
-			WindValues[1]="Strong";
+			WindValues[0]="weak";
+			WindValues[1]="strong";
 			attributeSet[3] = new DiscreteAttribute("Wind",3,  WindValues);
 			
 			String PlayValues[]=new String[2];
-			PlayValues[0]="Yes";
-			PlayValues[1]="No";
+			PlayValues[0]="yes";
+			PlayValues[1]="no";
 			attributeSet[4] = new DiscreteAttribute("PlayTennis",4,  PlayValues);	
 			
 			this.data = new Object[14][5];
@@ -130,9 +134,9 @@ class Data {
 			
 	
 	                   
-	                
+	       //numero di tuple distinte         
 	                 
-	          
+		    distinctTuples=countDistinctTuples();     
 	
 				// numberOfExamples
 				
@@ -147,11 +151,11 @@ class Data {
 			
 		}
 		
-		int getNumberOfExamples(){
+		public int getNumberOfExamples(){
 			return numberOfExamples;
 		}
 		
-		int getNumberOfAttributes(){
+		public int getNumberOfAttributes(){
 			return attributeSet.length;
 		}
 		
@@ -159,7 +163,7 @@ class Data {
 			return attributeSet;
 		}
 		
-		Object getAttributeValue(int exampleIndex, int attributeIndex){
+		public Object getAttributeValue(int exampleIndex, int attributeIndex){
 			return data[exampleIndex][attributeIndex];
 		}
 		
@@ -200,14 +204,14 @@ class Data {
 			return s;
 		}
 		
-		Tuple getItemSet(int index){
+		public Tuple getItemSet(int index){
 			Tuple tuple=new Tuple(attributeSet.length);
 			for(int i=0;i<attributeSet.length;i++)
 				tuple.add(new DiscreteItem((DiscreteAttribute)attributeSet[i],(String)data[index][i]),i); //fatto downcast
 			return tuple;
 			}
 		
-		int[] sampling(int k){
+		public int[] sampling(int k){
 			int centroidIndexes[]=new int[k];
 			//choose k random different centroids in data.
 			Random rand=new Random();
@@ -279,6 +283,26 @@ class Data {
 			 return attribute.getValue(imax);
 			 
 			 
+		 }
+		 //testata
+		 private int countDistinctTuples() {
+			 int count=1;
+			 for(int i =1;i<getNumberOfExamples();i++) {
+				 boolean distinct = true;
+				 for (int k = 0;k<i;k++) {
+					 if(compare(i,k)==true) {
+						 distinct = false;
+						 
+					 }
+				 }
+			  if (distinct == true) {
+				  count ++;
+			  }	 
+			 }
+			 
+			 
+			 
+			return count;
 		 }
 		 
 		

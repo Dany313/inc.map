@@ -1,4 +1,4 @@
-package esercitazione_1;
+package data;
 
 public class ContinuosAttribute extends Attribute {
 	

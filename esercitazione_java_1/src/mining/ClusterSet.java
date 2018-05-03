@@ -1,6 +1,7 @@
-package esercitazione_java_1;
+package mining;
 
-
+import data.Data;
+import data.Tuple;
 
 public class ClusterSet {
 	Cluster C[];
@@ -20,7 +21,7 @@ public class ClusterSet {
 		return this.C[i];
 	}
 	
-	void initializeCentroids(Data data){
+	public void initializeCentroids(Data data){
 		int centroidIndexes[]=data.sampling(C.length);
 		for(int i=0;i<centroidIndexes.length;i++){
 			Tuple centroidI=data.getItemSet(centroidIndexes[i]);
