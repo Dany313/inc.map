@@ -11,7 +11,7 @@ public class Data {
 		private Object data[][];
 		private int numberOfExamples;
 		private Attribute attributeSet[];
-		private int distinctTuples;
+		public int distinctTuples;
 
 		
 		
@@ -134,9 +134,9 @@ public class Data {
 			
 	
 	                   
-	       //numero di tuple distinte         
+	             
 	                 
-		    distinctTuples=countDistinctTuples();     
+		       
 	
 				// numberOfExamples
 				
@@ -144,6 +144,10 @@ public class Data {
 				 
 				
 				//explanatory Set
+				 
+				 //numero di tuple distinte  
+				 
+				 distinctTuples=countDistinctTuples();  
 				
 	
 	
@@ -211,7 +215,11 @@ public class Data {
 			return tuple;
 			}
 		
-		public int[] sampling(int k){
+		public int[] sampling(int k) throws OutOfRangeSampleSize {
+			if((k<=0) || (k>distinctTuples)) {
+				throw new OutOfRangeSampleSize();
+			}
+
 			int centroidIndexes[]=new int[k];
 			//choose k random different centroids in data.
 			Random rand=new Random();
@@ -234,7 +242,8 @@ public class Data {
 			centroidIndexes[i]=c;
 			}
 			return centroidIndexes;
-		}
+		
+          }
 		
 		 private boolean compare(int i,int j){
 			boolean flag = false;
@@ -304,6 +313,7 @@ public class Data {
 			 
 			return count;
 		 }
+		 
 		 
 		
 		

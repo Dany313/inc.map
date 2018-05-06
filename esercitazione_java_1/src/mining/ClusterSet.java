@@ -1,6 +1,7 @@
 package mining;
 
 import data.Data;
+import data.OutOfRangeSampleSize;
 import data.Tuple;
 
 public class ClusterSet {
@@ -21,12 +22,14 @@ public class ClusterSet {
 		return this.C[i];
 	}
 	
-	public void initializeCentroids(Data data){
+	public void initializeCentroids(Data data)throws OutOfRangeSampleSize {
+		
 		int centroidIndexes[]=data.sampling(C.length);
 		for(int i=0;i<centroidIndexes.length;i++){
 			Tuple centroidI=data.getItemSet(centroidIndexes[i]);
 			add(new Cluster(centroidI));
 		}
+		
 	}
 	
 	Cluster nearestCluster(Tuple tuple) {

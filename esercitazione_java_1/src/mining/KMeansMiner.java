@@ -1,6 +1,7 @@
 package mining;
 
 import data.Data;
+import data.OutOfRangeSampleSize;
 import mining.ClusterSet;
 
 public class KMeansMiner {
@@ -15,7 +16,7 @@ public class KMeansMiner {
 		return this.C;
 	}
 	
-	public int kmeans(Data data){
+	public int kmeans(Data data)throws OutOfRangeSampleSize{
 		int numberOfIterations=0;
 //STEP 1// scelta casuale centroide per ogni cluster
 		C.initializeCentroids(data);
